@@ -36,7 +36,7 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    private static final Logger logger = LoggerFactory.getLogger(PessoaController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PessoaController.class);
 
     @GetMapping("/pessoa")
     public Collection<Pessoa> list(){
@@ -49,13 +49,15 @@ public class PessoaController {
     }
     
     @PostMapping("/pessoa")
-    public void create(@RequestBody Pessoa pessoa){
+    public Pessoa create(@RequestBody Pessoa pessoa){
         pessoaService.create(pessoa);
+        return pessoa;
     }
     
     @PutMapping("/pessoa/{id}")
-    public void update(@PathVariable long id, @RequestBody Pessoa pessoa){
+    public Pessoa update(@PathVariable long id, @RequestBody Pessoa pessoa){
         pessoaService.update(pessoa);
+        return pessoa;
     }
     
     @DeleteMapping("/pessoa/{id}")
@@ -66,7 +68,7 @@ public class PessoaController {
     @PostMapping("/pessoa/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile uploadfile) {
 
-        logger.debug("Single file upload!");
+        LOGGER.debug("Single file upload!");
 
         if (uploadfile.isEmpty()) {
             return new ResponseEntity("please select a file!", HttpStatus.OK);

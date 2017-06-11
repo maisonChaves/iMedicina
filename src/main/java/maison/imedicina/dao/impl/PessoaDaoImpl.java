@@ -65,6 +65,9 @@ public class PessoaDaoImpl implements PessoaDao {
 
         CriteriaQuery<Pessoa> query = cb.createQuery(Pessoa.class);
 
+        Root<Pessoa> c = query.from(Pessoa.class);
+        query.select(c);
+
         return entityManager.createQuery(query).getResultList();
     }
 
