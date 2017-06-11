@@ -1,0 +1,65 @@
+package maison.imedicina.service.impl;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import maison.imedicina.dao.PessoaDao;
+import maison.imedicina.file.PessoaFile;
+import maison.imedicina.model.Pessoa;
+import maison.imedicina.service.PessoaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Transactional
+public class PessoaServiceImpl implements PessoaService {
+
+    @Autowired
+    private PessoaDao pessoaDao;
+
+    @Autowired
+    private PessoaFile pessoaFile;
+
+    @Override
+    public void create(Pessoa pessoa) {
+        pessoaDao.create(pessoa);
+    }
+
+    @Override
+    public void upload(InputStream inputStream) throws FileNotFoundException, IOException {
+        Collection<Pessoa> pessoas = pessoaFile.read(inputStream);
+
+        for (Pessoa pessoa : pessoas) {
+            pessoaDao.create(pessoa);
+        }
+
+    }
+
+    @Override
+    public Collection<Pessoa> list() {
+        return pessoaDao.list();
+    }
+
+    @Override
+    public void update(Pessoa pessoa) {
+        pessoaDao.update(pessoa);
+    }
+
+    @Override
+    public Pessoa getPessoaById(long id) {
+        return pessoaDao.getPessoaById(id);
+    }
+
+    @Override
+    public Pessoa getPessoaByName(String name) {
+        return pessoaDao.getPessoaByName(name);
+    }
+
+    @Override
+    public void delete(long id) {
+        pessoaDao.delete(id);
+    }
+
+}
