@@ -9,9 +9,9 @@ public interface PessoaDao {
 
     void update(Pessoa pessoa);
 
-    Pessoa getPessoaById(long id);
+    Pessoa getById(long id);
 
-    Pessoa getPessoaByName(String name);
+    boolean checkExistence(Pessoa pessoa);
 
     void delete(long id);
 

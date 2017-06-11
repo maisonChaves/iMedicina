@@ -29,12 +29,12 @@ public class PessoaDaoImpl implements PessoaDao {
     }
 
     @Override
-    public Pessoa getPessoaById(long id) {
+    public Pessoa getById(long id) {
         return entityManager.find(Pessoa.class, id);
     }
 
     @Override
-    public Pessoa getPessoaByName(String name) {
+    public boolean checkExistence(Pessoa pessoa) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<Pessoa> query = cb.createQuery(Pessoa.class);
@@ -47,13 +47,13 @@ public class PessoaDaoImpl implements PessoaDao {
 
         return entityManager
                 .createQuery(query)
-                .setParameter(parameter, name)
-                .getSingleResult();
+                .setParameter(parameter, pessoa.getNome())
+                .getSingleResult() != null;
     }
 
     @Override
     public void delete(long id) {
-        Pessoa pessoa = getPessoaById(id);
+        Pessoa pessoa = getById(id);
         if (pessoa != null) {
             entityManager.remove(pessoa);
         }

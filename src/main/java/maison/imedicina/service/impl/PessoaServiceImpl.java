@@ -32,7 +32,10 @@ public class PessoaServiceImpl implements PessoaService {
         Collection<Pessoa> pessoas = pessoaFile.read(inputStream);
 
         for (Pessoa pessoa : pessoas) {
-            pessoaDao.create(pessoa);
+            boolean check = pessoaDao.checkExistence(pessoa);
+            if(!check){
+                pessoaDao.create(pessoa);
+            }
         }
 
     }
@@ -49,12 +52,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Pessoa getPessoaById(long id) {
-        return pessoaDao.getPessoaById(id);
-    }
-
-    @Override
-    public Pessoa getPessoaByName(String name) {
-        return pessoaDao.getPessoaByName(name);
+        return pessoaDao.getById(id);
     }
 
     @Override

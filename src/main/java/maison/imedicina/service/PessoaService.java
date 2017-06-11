@@ -16,8 +16,6 @@ public interface PessoaService {
 
     Pessoa getPessoaById(long id);
 
-    Pessoa getPessoaByName(String name);
-
     void delete(long id);
 
     void upload(InputStream inputStream) throws FileNotFoundException, IOException;
