@@ -1,11 +1,114 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <title>iMedicina</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/node_modules/bulma/css/bulma.css" />
+        <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
     </head>
+
     <body>
-        <div>Cadastro de Pessoa</div>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        iMedicina
+                    </h1>
+                    <h2 class="subtitle">
+                        Cadastro de pessoa
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <nav class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="field">
+                            <p class="control has-icons-right">
+                                <input class="input" type="text" placeholder="Search">
+                                <span class="icon is-small is-right">
+                                <i class="fa fa-search"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="level-left">
+                    <div class="level-item">
+                        <a class="button is-primary">
+                            <span class="icon">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                            <span>Add</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>Data de nascimento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Maison Chaves</td>
+                        <td>(31) 3391-4017</td>
+                        <td>maison@chaves.com.br</td>
+                        <td>28/11/1988</td>
+                        <td>
+                            <a class="button is-primary">
+                                <span class="icon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <span>Editar</span>
+                            </a>
+                            <a class="button is-danger ">
+                                <span class="icon">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                                <span>Remover</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pedro Antonio</td>
+                        <td>(31) 3355-1672</td>
+                        <td>pedro@antonio.com.br</td>
+                        <td>23/05/1988</td>
+                        <td>
+                            <a class="button is-primary">
+                                <span class="icon">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                <span>Editar</span>
+                            </a>
+                            <a class="button is-danger ">
+                                <span class="icon">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                                <span>Remover</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a class="button is-primary">
+                <span class="icon">
+                    <i class="fa fa-upload"></i>
+                </span>
+                <span>Upload</span>
+            </a>
+        </section>
     </body>
+
 </html>
