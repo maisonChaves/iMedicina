@@ -5,5 +5,5 @@
 (function () {
     'use strict';
 
-    angular.module('pessoaApp', ['ngRoute']);
+    angular.module('pessoaApp', ['ngRoute', 'ngResource']);
 }());

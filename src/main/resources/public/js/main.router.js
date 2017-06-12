@@ -4,7 +4,6 @@
 
     angular.module('pessoaApp').config(RouterConfig);
 
-
     RouterConfig.$inject = ['$routeProvider', '$locationProvider'];
 
     function RouterConfig($routeProvider, $locationProvider) {

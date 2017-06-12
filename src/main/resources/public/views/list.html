@@ -23,7 +23,6 @@
             </div>
         </div>
     </nav>
-
     <table class="table">
         <thead>
             <tr>
@@ -35,33 +34,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Maison Chaves</td>
-                <td>(31) 3391-4017</td>
-                <td>maison@chaves.com.br</td>
-                <td>28/11/1988</td>
+            <tr ng-repeat="pessoa in main.pessoas">
+                <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.telefone}}</td>
+                <td>{{pessoa.email}}</td>
+                <td>{{pessoa.dataNascimento}}</td>
                 <td>
-                    <a class="button is-primary" href="#/form/1">
-                        <span class="icon">
-                            <i class="fa fa-pencil"></i>
-                        </span>
-                        <span>Editar</span>
-                    </a>
-                    <a class="button is-danger ">
-                        <span class="icon">
-                            <i class="fa fa-trash"></i>
-                        </span>
-                        <span>Remover</span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Pedro Antonio</td>
-                <td>(31) 3355-1672</td>
-                <td>pedro@antonio.com.br</td>
-                <td>23/05/1988</td>
-                <td>
-                    <a class="button is-primary" href="#/form/2">
+                    <a class="button is-primary" href="#/form/{{pessoa.id}}">
                         <span class="icon">
                             <i class="fa fa-pencil"></i>
                         </span>
