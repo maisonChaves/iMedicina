@@ -2,6 +2,9 @@ package maison.imedicina;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+
 import maison.imedicina.model.Pessoa;
 import maison.imedicina.service.PessoaService;
 import org.slf4j.Logger;
@@ -62,21 +65,21 @@ public class PessoaController {
     }
 
     @PostMapping("/pessoa/upload")
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile uploadfile) {
+    public Collection<Pessoa> uploadFile(@RequestParam("file") MultipartFile uploadfile) {
 
-        LOGGER.debug("Single file upload!");
+        Collection<Pessoa> pessoas;
 
         if (uploadfile.isEmpty()) {
-            return new ResponseEntity("please select a file!", HttpStatus.OK);
+            return Collections.emptySet();
         }
 
         try {
-            pessoaService.upload(uploadfile.getInputStream());
+           pessoas = pessoaService.upload(uploadfile.getInputStream());
         } catch (IOException ex) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return Collections.emptySet();
         }
 
-        return new ResponseEntity("Successfully uploaded - " + uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+        return pessoas;
 
     }
 }

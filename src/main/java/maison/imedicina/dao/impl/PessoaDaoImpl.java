@@ -45,10 +45,10 @@ public class PessoaDaoImpl implements PessoaDao {
 
         query.where(cb.like(pessoas.get("nome"), parameter));
 
-        return entityManager
+        return !entityManager
                 .createQuery(query)
                 .setParameter(parameter, pessoa.getNome())
-                .getSingleResult() != null;
+                .getResultList().isEmpty();
     }
 
     @Override

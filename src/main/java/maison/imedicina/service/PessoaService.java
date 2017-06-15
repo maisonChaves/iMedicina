@@ -18,5 +18,5 @@ public interface PessoaService {
 
     void delete(long id);
 
-    void upload(InputStream inputStream) throws FileNotFoundException, IOException;
+    Collection<Pessoa> upload(InputStream inputStream) throws IOException;
 }

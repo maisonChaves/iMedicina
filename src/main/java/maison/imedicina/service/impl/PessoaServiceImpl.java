@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+
 import maison.imedicina.dao.PessoaDao;
 import maison.imedicina.file.PessoaFile;
 import maison.imedicina.model.Pessoa;
@@ -28,15 +31,18 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public void upload(InputStream inputStream) throws FileNotFoundException, IOException {
+    public Collection<Pessoa> upload(InputStream inputStream) throws FileNotFoundException, IOException {
         Collection<Pessoa> pessoas = pessoaFile.read(inputStream);
-
+        Collection<Pessoa> inserted = new HashSet<>();
         for (Pessoa pessoa : pessoas) {
             boolean check = pessoaDao.checkExistence(pessoa);
             if(!check){
+                inserted.add(pessoa);
                 pessoaDao.create(pessoa);
             }
         }
+
+        return inserted;
 
     }
 

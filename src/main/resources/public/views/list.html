@@ -57,10 +57,14 @@
         </tbody>
     </table>
 
-    <a class="button is-primary">
+    <button class="button is-primary" type="file" ngf-select="main.uploadFile($file, $invalidFiles)"
+        ngf-max-size="1MB">
         <span class="icon">
             <i class="fa fa-upload"></i>
         </span>
         <span>Upload</span>
-    </a>
+    </button>
+    
+    <progress class="progress is-success" value="main.f.progress" max="100" nf-if="main.f.progress > 0">{{main.f.progress}}%</progress>
+
 </section>

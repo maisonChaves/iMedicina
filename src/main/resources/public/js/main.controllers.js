@@ -4,20 +4,20 @@
 
     angular.module('pessoaApp').controller('MainController', MainController);
 
-    MainController.$inject = ['PessoaService', '$routeParams', '$location'];
+    MainController.$inject = ['PessoaService', '$routeParams', '$location', 'Upload'];
 
     /**
      * @namespace MainController
      * @desc Main Controller of Challenge App
      * @memberOf PessoaApp
      */
-    function MainController(PessoaService, $routeParams, $location) {
+    function MainController(PessoaService, $routeParams, $location, Upload) {
 
         var main = this;
 
-        main.pessoa = {};
         main.salvaPessoas = salvaPessoas;
         main.removePessoas = removePessoas;
+        main.uploadFile = uploadFile;
 
         listaPessoas();
 
@@ -30,8 +30,6 @@
                 console.log(pessoa);
                 main.pessoa = pessoa;
             });
-
-            main.pessoa = teste;
         }
 
         function listaPessoas() {
@@ -54,6 +52,28 @@
                 main.pessoas.push(pessoa);
                 $location.path('/');
             });
+        }
+
+        function uploadFile(file, errFiles) {
+            main.f = file;
+            main.errFile = errFiles && errFiles[0];
+            if (file) {
+                file.upload = Upload.upload({
+                    url: '/pessoa/upload',
+                    data: { file: file }
+                });
+
+                file.upload.then(function (response) {
+                    //$timeout(function () {
+                        main.pessoas = main.pessoas.concat(response.data);
+                    //});
+                }, function (response) {
+                    if (response.status > 0)
+                        main.errorMsg = response.status + ': ' + response.data;
+                }, function (evt) {
+                    main.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                });
+            }
         }
 
     }
