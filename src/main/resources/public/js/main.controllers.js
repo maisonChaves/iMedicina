@@ -4,14 +4,14 @@
 
     angular.module('pessoaApp').controller('MainController', MainController);
 
-    MainController.$inject = ['PessoaService', '$routeParams', '$location', 'Upload', 'notify'];
+    MainController.$inject = ['PessoaService', '$routeParams', '$location', 'Upload', 'notify', '$scope'];
 
     /**
      * @namespace MainController
      * @desc Main Controller of Challenge App
      * @memberOf PessoaApp
      */
-    function MainController(PessoaService, $routeParams, $location, Upload, notify) {
+    function MainController(PessoaService, $routeParams, $location, Upload, notify, $scope) {
 
         var main = this;
 
@@ -21,13 +21,8 @@
 
         listaPessoas();
 
-        if ($routeParams.id) {
-            carregaPessoa();
-        }
-
         function carregaPessoa() {
             PessoaService.get({ id: $routeParams.id }, function (pessoa) {
-                console.log(pessoa);
                 main.pessoa = pessoa;
             });
         }
@@ -43,7 +38,7 @@
             var id = main.pessoas[index].id;
 
             PessoaService.remove({ id: id }, function (pessoa) {
-                main.pessoas.splice(index);
+                main.pessoas.splice(index, 1);
                 notify({
                     message: 'Pessoa removida com sucesso!',
                     classes: 'notification is-success',
@@ -53,16 +48,24 @@
         }
 
         function salvaPessoas() {
-            PessoaService.save(main.pessoa, function (pessoa) {
-                main.pessoas.push(pessoa);
+            if (main.pessoaForm.$valid) {
+                PessoaService.save(main.pessoa, function (pessoa) {
+                    main.pessoas.push(pessoa);
+                    notify({
+                        message: 'Pessoa salva com sucesso!',
+                        classes: 'notification is-success',
+                        position: 'right'
+                    });
+                    main.pessoa = {};
+                    $location.path('/');
+                });
+            } else {
                 notify({
-                    message: 'Pessoa salva com sucesso!',
-                    classes: 'notification is-success',
+                    message: 'Verifique o formulario',
+                    classes: 'notification is-danger',
                     position: 'right'
                 });
-                main.pessoa = {};
-                $location.path('/');
-            });
+            }
         }
 
         function uploadFile(file, errFiles) {
@@ -89,6 +92,15 @@
                 });
             }
         }
+
+        $scope.$on('$viewContentLoaded', function () {
+
+            main.pessoa = {};
+
+            if ($routeParams.id) {
+                carregaPessoa();
+            }
+        });
 
     }
 

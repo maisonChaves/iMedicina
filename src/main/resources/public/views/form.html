@@ -1,27 +1,48 @@
 <section class="section">
-    <form>
+    <form name="main.pessoaForm">
         <div class="field">
             <label class="label">Name</label>
             <p class="control">
-                <input class="input" type="text" placeholder="Nome" ng-model="main.pessoa.nome">
+                <input 
+                class="input ng-class:{ 'is-danger': main.pessoaForm.nome.$touched && main.pessoaForm.nome.$invalid };" 
+                type="text" 
+                placeholder="Nome" 
+                name="nome" 
+                ng-model="main.pessoa.nome" 
+                required>
             </p>
         </div>
         <div class="field">
             <label class="label">E-Mail</label>
             <p class="control">
-                <input class="input" type="mail" placeholder="E-mail" ng-model="main.pessoa.email">
+                <input 
+                class="input ng-class:{ 'is-danger': main.pessoaForm.nome.$touched && main.pessoaForm.email.$invalid };" 
+                type="email" 
+                placeholder="E-mail" 
+                name="email" 
+                ng-model="main.pessoa.email">
             </p>
         </div>
         <div class="field">
             <label class="label">Telefone</label>
             <p class="control">
-                <input class="input" type="text" placeholder="Telefone" ng-model="main.pessoa.telefone">
+                <input 
+                class="input ng-class:{ 'is-danger': main.pessoaForm.nome.$touched && main.pessoaForm.telefone.$invalid };" 
+                type="text" 
+                placeholder="Telefone" 
+                name="telefone" 
+                ng-model="main.pessoa.telefone">
             </p>
         </div>
         <div class="field">
-            <label class="label">Data</label>
+            <label class="label">Data de nascimento</label>
             <p class="control">
-                <input class="input" type="date" placeholder="Data" ng-model="main.pessoa.data">
+                <input 
+                class="input ng-class:{ 'is-danger': main.pessoaForm.nome.$touched && main.pessoaForm.dataNascimento.$invalid };" 
+                type="date" 
+                placeholder="Data de nascimento" 
+                name="dataNascimento" 
+                ng-model="main.pessoa.dataNascimento">
             </p>
         </div>
         <a class="button is-primary" href="/#">
@@ -30,7 +51,7 @@
         </span>
         <span>Cancelar</span>
     </a>
-        <a class="button is-success" ng-click="main.salvaPessoas()">
+    <a class="button is-success" ng-click="main.salvaPessoas()">
         <span class="icon">
             <i class="fa fa-floppy-o"></i>
         </span>

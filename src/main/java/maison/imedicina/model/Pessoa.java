@@ -1,5 +1,9 @@
 package maison.imedicina.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import maison.imedicina.serializer.CustomDateSerializer;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -32,6 +36,8 @@ public class Pessoa implements Serializable {
     private String email;
 
     @Temporal(TemporalType.DATE)
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    @JsonSerialize(using = CustomDateSerializer.class)
     private Date dataNascimento;
 
     public Long getId() {
