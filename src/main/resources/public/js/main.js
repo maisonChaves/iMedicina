@@ -5,5 +5,5 @@
 (function () {
     'use strict';
 
-    angular.module('pessoaApp', ['ngRoute', 'ngResource', 'ngFileUpload']);
+    angular.module('pessoaApp', ['ngRoute', 'ngResource', 'ngFileUpload', 'cgNotify']);
 }());

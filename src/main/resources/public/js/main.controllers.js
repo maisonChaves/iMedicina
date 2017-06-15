@@ -4,14 +4,14 @@
 
     angular.module('pessoaApp').controller('MainController', MainController);
 
-    MainController.$inject = ['PessoaService', '$routeParams', '$location', 'Upload'];
+    MainController.$inject = ['PessoaService', '$routeParams', '$location', 'Upload', 'notify'];
 
     /**
      * @namespace MainController
      * @desc Main Controller of Challenge App
      * @memberOf PessoaApp
      */
-    function MainController(PessoaService, $routeParams, $location, Upload) {
+    function MainController(PessoaService, $routeParams, $location, Upload, notify) {
 
         var main = this;
 
@@ -26,7 +26,7 @@
         }
 
         function carregaPessoa() {
-            var teste = PessoaService.get({ id: $routeParams.id }, function (pessoa) {
+            PessoaService.get({ id: $routeParams.id }, function (pessoa) {
                 console.log(pessoa);
                 main.pessoa = pessoa;
             });
@@ -44,12 +44,23 @@
 
             PessoaService.remove({ id: id }, function (pessoa) {
                 main.pessoas.splice(index);
+                notify({
+                    message: 'Pessoa removida com sucesso!',
+                    classes: 'notification is-success',
+                    position: 'right'
+                });
             });
         }
 
         function salvaPessoas() {
             PessoaService.save(main.pessoa, function (pessoa) {
                 main.pessoas.push(pessoa);
+                notify({
+                    message: 'Pessoa salva com sucesso!',
+                    classes: 'notification is-success',
+                    position: 'right'
+                });
+                main.pessoa = {};
                 $location.path('/');
             });
         }
@@ -64,9 +75,12 @@
                 });
 
                 file.upload.then(function (response) {
-                    //$timeout(function () {
-                        main.pessoas = main.pessoas.concat(response.data);
-                    //});
+                    main.pessoas = main.pessoas.concat(response.data);
+                    notify({
+                        message: 'Arquivo processado com sucesso!',
+                        classes: 'notification is-success',
+                        position: 'right'
+                    });
                 }, function (response) {
                     if (response.status > 0)
                         main.errorMsg = response.status + ': ' + response.data;

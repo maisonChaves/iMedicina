@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/maisonChaves/iMedicina#readme",
   "dependencies": {
+    "@cgross/angular-notify": "^2.5.1",
     "angular": "^1.6.4",
     "angular-resource": "^1.6.4",
     "angular-route": "^1.6.4",
