@@ -1,7 +1,6 @@
 package maison.imedicina.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
@@ -9,15 +8,18 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Converte campos Date em Strings no formato {@code "dd/MM/yyyy"}
+ */
 public class CustomDateSerializer extends StdSerializer<Date> {
 
-    private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomDateSerializer() {
         this(null);
     }
 
-    public CustomDateSerializer(Class t) {
+    public CustomDateSerializer(Class<Date> t) {
         super(t);
     }
 

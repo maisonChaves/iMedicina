@@ -9,6 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Converte objetos do Json para o objeto Date
+ */
 public class CustomDateDeserializer extends JsonDeserializer<Date> {
     @Override
     public Date deserialize(JsonParser jsonparser, DeserializationContext deserializationcontext) throws IOException {

@@ -3,7 +3,6 @@ package maison.imedicina;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 
 import maison.imedicina.model.Pessoa;
 import maison.imedicina.service.PessoaService;
@@ -11,9 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
+ * Controller de Pessoa.
  *
- * @author Maison
+ * @author Maison Chaves
  */
 @RestController
 @EnableAutoConfiguration
@@ -43,7 +40,7 @@ public class PessoaController {
     }
     
     @GetMapping("/pessoa/{id}")
-    public Pessoa list(@PathVariable long id){
+    public Pessoa get(@PathVariable long id){
         return pessoaService.getPessoaById(id);
     }
     

@@ -1,10 +1,8 @@
 package maison.imedicina.service.impl;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 
 import maison.imedicina.dao.PessoaDao;
@@ -31,7 +29,7 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public Collection<Pessoa> upload(InputStream inputStream) throws FileNotFoundException, IOException {
+    public Collection<Pessoa> upload(InputStream inputStream) throws IOException {
         Collection<Pessoa> pessoas = pessoaFile.read(inputStream);
         Collection<Pessoa> inserted = new HashSet<>();
         for (Pessoa pessoa : pessoas) {

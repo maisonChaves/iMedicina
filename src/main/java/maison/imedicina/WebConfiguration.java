@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * Configuração para o console H2.
  *
- * @author Maison
+ * @author Maison Chaves
  */
 @Configuration
 public class WebConfiguration {

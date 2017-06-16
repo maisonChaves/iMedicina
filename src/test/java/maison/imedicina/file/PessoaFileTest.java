@@ -14,7 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Teste de leitura de arquivo
  * @author Maison Chaves
  */
 public class PessoaFileTest {

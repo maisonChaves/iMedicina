@@ -8,7 +8,7 @@
 
     /**
      * @namespace MainController
-     * @desc Main Controller of Challenge App
+     * @desc Main Controller of Pessoa App
      * @memberOf PessoaApp
      */
     function MainController(PessoaService, $routeParams, $location, Upload, notify, $scope) {
@@ -22,6 +22,11 @@
 
         listaPessoas();
 
+        /**
+         * @name atualizarPessoas
+         * @desc Atualiza pessoas via API
+         * @memberOf PessoaApp.MainController
+         */
         function atualizarPessoas() {
             if (main.pessoaForm.$valid) {
                 PessoaService.update({ id: main.pessoa.id }, main.pessoa, function (pessoa) {
@@ -50,18 +55,34 @@
             return item.id === main.pessoa.id;
         }
 
+        /**
+         * @name carregaPessoa
+         * @desc Recupera uma pessoa via API
+         * @memberOf PessoaApp.MainController
+         */
         function carregaPessoa() {
             PessoaService.get({ id: $routeParams.id }, function (pessoa) {
                 main.pessoa = pessoa;
             });
         }
 
+        /**
+         * @name listaPessoas
+         * @desc Recupera pessoas via API
+         * @memberOf PessoaApp.MainController
+         */
         function listaPessoas() {
             PessoaService.query(function (pessoas) {
                 main.pessoas = pessoas;
             });
         }
 
+        /**
+         * @name removePessoas
+         * @desc Remove pessoas via API
+         * @param {Number} index index da pessoa a ser removida
+         * @memberOf PessoaApp.MainController
+         */
         function removePessoas(index) {
 
             var id = main.pessoas[index].id;
@@ -76,6 +97,11 @@
             });
         }
 
+        /**
+         * @name salvaPessoas
+         * @desc Insere novas pessoas via API
+         * @memberOf PessoaApp.MainController
+         */
         function salvaPessoas() {
             if (main.pessoaForm.$valid) {
                 PessoaService.save(main.pessoa, function (pessoa) {
@@ -97,6 +123,13 @@
             }
         }
 
+        /**
+         * @name uploadFile
+         * @desc Realiza upload do aruqivo para uma API
+         * @param {Object} file objeto do aquivo.
+         * @param {Object} errFiles lista de erros de upload.
+         * @memberOf PessoaApp.MainController
+         */
         function uploadFile(file, errFiles) {
             main.f = file;
             main.errFile = errFiles && errFiles[0];

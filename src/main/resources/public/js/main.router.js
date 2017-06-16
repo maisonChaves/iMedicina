@@ -6,6 +6,11 @@
 
     RouterConfig.$inject = ['$routeProvider', '$locationProvider'];
 
+    /**
+     * @namespace RouterConfig
+     * @desc Router configuraion of Pessoa App
+     * @memberOf PessoaApp
+     */
     function RouterConfig($routeProvider, $locationProvider) {
 
         $locationProvider.hashPrefix('');

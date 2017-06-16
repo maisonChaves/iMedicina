@@ -1,6 +1,5 @@
 package maison.imedicina.file.impl;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
@@ -13,16 +12,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Maison Chaves
- */
 @Component
 public class PessoaFileImpl implements PessoaFile {
 
     @Override
-    public Collection<Pessoa> read(InputStream myFile) throws FileNotFoundException, IOException {
-        XSSFWorkbook myWorkBook = new XSSFWorkbook(myFile);
+    public Collection<Pessoa> read(InputStream pessoaFile) throws IOException {
+        XSSFWorkbook myWorkBook = new XSSFWorkbook(pessoaFile);
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
 
         Collection<Pessoa> pessoas = new HashSet<>();
@@ -35,11 +30,6 @@ public class PessoaFileImpl implements PessoaFile {
         return pessoas;
     }
 
-    /**
-     *
-     * @param row
-     * @return
-     */
     private Pessoa toPessoa(Row row) {
         Pessoa pessoa = new Pessoa();
 
@@ -58,11 +48,6 @@ public class PessoaFileImpl implements PessoaFile {
         return pessoa;
     }
 
-    /**
-     *
-     * @param row
-     * @return
-     */
     private boolean hasName(Row row) {
         return row.getCell(0) != null;
     }
