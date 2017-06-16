@@ -15,11 +15,40 @@
 
         var main = this;
 
+        main.atualizarPessoas = atualizarPessoas;
         main.salvaPessoas = salvaPessoas;
         main.removePessoas = removePessoas;
         main.uploadFile = uploadFile;
 
         listaPessoas();
+
+        function atualizarPessoas() {
+            if (main.pessoaForm.$valid) {
+                PessoaService.update({ id: main.pessoa.id }, main.pessoa, function (pessoa) {
+
+                    var index = main.pessoas.findIndex(byId);
+                    main.pessoas[index] = main.pessoa;
+
+                    notify({
+                        message: 'Pessoa alterada com sucesso!',
+                        classes: 'notification is-success',
+                        position: 'right'
+                    });
+                    main.pessoa = {};
+                    $location.path('/');
+                });
+            } else {
+                notify({
+                    message: 'Verifique o formulario',
+                    classes: 'notification is-danger',
+                    position: 'right'
+                });
+            }
+        }
+
+        function byId(item) {
+            return item.id === main.pessoa.id;
+        }
 
         function carregaPessoa() {
             PessoaService.get({ id: $routeParams.id }, function (pessoa) {

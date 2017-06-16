@@ -51,11 +51,17 @@
         </span>
         <span>Cancelar</span>
     </a>
-    <a class="button is-success" ng-click="main.salvaPessoas()">
+    <a class="button is-success" ng-click="main.salvaPessoas()" ng-if="!main.pessoa.id">
         <span class="icon">
             <i class="fa fa-floppy-o"></i>
         </span>
         <span>Salvar</span>
+    </a>
+    <a class="button is-success" ng-click="main.atualizarPessoas()" ng-if="main.pessoa.id">
+        <span class="icon">
+            <i class="fa fa-floppy-o"></i>
+        </span>
+        <span>Alterar</span>
     </a>
     </form>
 </section>
