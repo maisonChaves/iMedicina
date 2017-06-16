@@ -36,6 +36,16 @@ public class Pessoa implements Serializable {
 
     private String email;
 
+    public Pessoa() {
+    }
+
+    public Pessoa(String nome, String telefone, String email, Date dataNascimento) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+    }
+
     @Temporal(TemporalType.DATE)
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonDeserialize(using = CustomDateDeserializer.class)
