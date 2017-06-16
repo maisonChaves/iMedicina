@@ -1,28 +1,20 @@
 <section class="section">
-    <nav class="level">
-        <div class="level-left">
-            <div class="level-item">
-                <div class="field">
-                    <p class="control has-icons-right">
-                        <input class="input" type="text" placeholder="Search" ng-model="search">
-                        <span class="icon is-small is-right">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="level-left">
-            <div class="level-item">
-                <a class="button is-primary" href="#/form">
-                    <span class="icon">
-                        <i class="fa fa-plus"></i>
-                    </span>
-                    <span>Add</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div class="field column is-half is-grouped">
+        <p class="control has-icons-right is-expanded">
+            <input class="input" type="text" placeholder="Search" ng-model="search">
+            <span class="icon is-small is-right">
+                <i class="fa fa-search"></i>
+            </span>
+        </p>
+        <p class="control">
+            <a class="button is-primary" href="#/form">
+                <span class="icon">
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span>Add</span>
+            </a>
+        </p>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -57,13 +49,18 @@
         </tbody>
     </table>
 
-    <button class="button is-primary" type="file" ngf-select="main.uploadFile($file, $invalidFiles)"
-        ngf-max-size="1MB">
+    <button class="button is-primary" type="file" ngf-select="main.uploadFile($file, $invalidFiles)" ngf-max-size="1MB">
         <span class="icon">
             <i class="fa fa-upload"></i>
         </span>
         <span>Upload</span>
     </button>
-    <progress class="progress is-success" value="{{main.progress}}" max="100" ng-if="main.progress > 0">{{main.progress}}%</progress>
+    <div class="columns">
+        <div class="column is-half">
+            <progress class="progress is-success is-large" value="{{main.progress}}" max="100" ng-if="main.progress > 0" style="margin-top: 15px;">
+                {{main.progress}}%
+            </progress>
+        </div>
+    </div>
 
 </section>
